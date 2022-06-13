@@ -1,0 +1,2 @@
+# MemorySavingBoolArray
+This bool array implementation only need 1/8 in RAM compared to the standard "new bool[n]". This is archived by using a byte array internally and shifting bits. A normal bool struct in C# normally needs a byte of RAM. This implementation uses only one bit per boolean saved boolean array. But this comes at a cost though: Get and set operations take roughly twice the time compared to the standard boolean array.
