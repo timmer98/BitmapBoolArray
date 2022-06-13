@@ -15,8 +15,15 @@ namespace MemorySavingBoolArray
             this.array = new byte[realSize];
         }
 
+        private void EnsureIndexBounds(int index)
+        {
+            if (index > this.Length) throw new IndexOutOfRangeException();
+        }
+
         private void SetValue(int index, bool value)
         {
+            this.EnsureIndexBounds(index);
+
             var (internalIndex, remainder) = this.GetInternalIndex(index);
             var bit = value ? 1 : 0;
             this.array[internalIndex] = (byte)(this.array[internalIndex] ^ bit << remainder);
@@ -29,6 +36,8 @@ namespace MemorySavingBoolArray
 
         private bool GetValue(int index)
         {
+            this.EnsureIndexBounds(index);
+
             var (internalIndex, remainder) = GetInternalIndex(index);
 
             var workingByte = this.array[internalIndex];
