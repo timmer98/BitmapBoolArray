@@ -19,6 +19,16 @@ namespace MemorySavingBoolArray.Benchmarks
         }
 
         [Benchmark]
+        public void Set_FastModuloMemorySavingBoolArray()
+        {
+            var array = new FastModuloMemorySavingBoolArray(this.Size);
+            for (int i = 0; i < this.Size; i++)
+            {
+                array[i] = true;
+            }
+        }
+
+        [Benchmark]
         public void Set_NormalBoolArray()
         {
             var array = new bool[this.Size];
@@ -32,6 +42,16 @@ namespace MemorySavingBoolArray.Benchmarks
         public void Get_MemorySavingBoolArray()
         {
             var array = new MemorySavingBoolArray(this.Size);
+            for (int i = 0; i < this.Size; i++)
+            {
+                _ = array[i];
+            }
+        }
+
+        [Benchmark]
+        public void Get_FastModuloMemorySavingBoolArray()
+        {
+            var array = new FastModuloMemorySavingBoolArray(this.Size);
             for (int i = 0; i < this.Size; i++)
             {
                 _ = array[i];

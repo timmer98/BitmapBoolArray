@@ -1,14 +1,14 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace MemorySavingBoolArray
+﻿namespace MemorySavingBoolArray
 {
-    public class MemorySavingBoolArray : IMemorySavingBoolArray
+    public class FastModuloMemorySavingBoolArray : IMemorySavingBoolArray
     {
         private readonly byte[] array;
 
+        private const byte BITWISE_AND_MODULO = 8 - 1;
+
         public int Length { get; }
 
-        public MemorySavingBoolArray(int size)
+        public FastModuloMemorySavingBoolArray(int size)
         {
             this.Length = size;
             var realSize = (size >> 3) + 1; // Bit shift by 3 to the right corresponds to integer division by 8
@@ -31,7 +31,7 @@ namespace MemorySavingBoolArray
 
         private (int, int) GetInternalIndex(int index)
         {
-            return (index >> 3, index % 8);
+            return (index >> 3, index & BITWISE_AND_MODULO);
         }
 
         private bool GetValue(int index)

@@ -1,3 +1,3 @@
 ﻿using BenchmarkDotNet.Running;
 
-var summary = BenchmarkRunner.Run(typeof(Program).Assembly);
+var summary = BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
