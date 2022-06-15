@@ -3,9 +3,11 @@
 namespace MemorySavingBoolArray.Benchmarks
 {
     [MemoryDiagnoser]
+    [MarkdownExporter]
+    [MarkdownExporterAttribute.GitHub]
     public class ArrayBenchmark
     {
-        [Params(1100_000)]
+        [Params(1_000_000)]
         public int Size { get; set; }
 
         [Benchmark]
